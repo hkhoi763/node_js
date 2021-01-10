@@ -1,3 +1,5 @@
+-NÊN NHỚ: JS LÀ NGÔN NGỮ BẤT ĐỒNG BỘ, ĐƠN LUỒNG, KO BLOCK TÁC VỤ NÀO LÂU LÀ BỎ VÔ HÀNG ĐỢI
+
 //Biến var
 - Biến var sẽ có scope là globally scoped. Đặc biệt, biến var còn có thêm tính chất hoisting: nghĩa là dù khai báo ở đâu thì biến 
 đều sẽ được đem lên đầu scope trước khi code được thực hiện.
