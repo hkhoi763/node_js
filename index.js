@@ -18,6 +18,18 @@ const fortunes = [
 
 ]
 
+const tours = [
+
+{ id: 0, name: 'Hood River', price: 99.99 },
+
+{ id: 1, name: 'Oregon Coast', price: 149.95 },
+
+]
+
+//ko biết tại sao nhưng thiếu nó vài cái route api ko chạy đc
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 //Tạo view engine
 app.engine('hbs',handlebars({
   extname: '.hbs' //doi duoi file handlebars -> hbs
@@ -33,6 +45,22 @@ app.use(express.static('./template/resources')); //dinh tuyen static folder
 app.get('/', (req, res) => {
   res.render('home'); //them gia tri {layout: 'ten layout'} neu muon render layout khac main//
 });
+
+app.get('/tours', (req, res) => res.json(tours))
+
+app.get('/tours/:id', (req, res) => {
+
+const p = tours.find(p => p.id === parseInt(req.params.id))
+
+if(!p) return res.status(404).json({ error: 'No such tour exists' })
+
+if(req.body.name) p.name = req.body.name
+
+if(req.body.price) p.price = req.body.price
+
+res.json({message: 'Update success!'})
+
+})
 
 //trang about
 app.get('/about',(req, res)=>{
@@ -50,22 +78,21 @@ app.get('/table',(req,res)=>{
     }
     table.push(cell);
   }
-  
 
   res.render('table',{tables:table});
 })
-
-// trang 404
-app.use((req, res) => {
-  res.status(404);
-  res.render('404');
-});
 
 // trang 500
 app.use((err, req, res, next) => {
   console.error(err.message);
   res.status(500);
   res.render('500');
+});
+
+// trang 404
+app.use((req, res) => {
+  res.status(404);
+  res.render('404');
 });
 
 app.listen(port, () => {
