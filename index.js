@@ -46,19 +46,29 @@ app.get('/', (req, res) => {
   res.render('home'); //them gia tri {layout: 'ten layout'} neu muon render layout khac main//
 });
 
-app.get('/tours', (req, res) => res.json(tours))
+//API for tours
+app.get('/tours', (req, res) => res.render('tours',{tour:tours})) //liệt kê
 
-app.get('/tours/:id', (req, res) => {
+app.get('/tours/:id', (req, res) => { //update
+  const p = [tours.find(p => p.id === parseInt(req.params.id))] //lấy từ đường dẫn, req.body thì lấy từ value client truyền xuống
+  if(!p) return res.status(404).json({ error: 'No such tour exists' })
 
-const p = tours.find(p => p.id === parseInt(req.params.id))
+  if(req.body.name) p.name = req.body.name
 
-if(!p) return res.status(404).json({ error: 'No such tour exists' })
+  if(req.body.price) p.price = req.body.price
 
-if(req.body.name) p.name = req.body.name
+  res.render('tours',{tour:p})
+})
 
-if(req.body.price) p.price = req.body.price
+app.delete('/tour/:id', (req, res) => { //delete 
 
-res.json({message: 'Update success!'})
+  const idx = tours.findIndex(tour => tour.id === parseInt(req.params.id))
+
+  if(idx < 0) return res.json({ error: 'No such tour exists.' })
+
+  tours.splice(idx, 1)
+
+  res.render('tours',{tour:tours})
 
 })
 
