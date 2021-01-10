@@ -49,6 +49,13 @@ app.get('/', (req, res) => {
 //API for tours
 app.get('/tours', (req, res) => res.render('tours',{tour:tours})) //liệt kê
 
+app.post('/tours', (req, res) => {
+  let newId=tours[-1].id+1;
+  let newTour={id:newId,name:req.body.name,price:req.body.price};
+  tours.push(newTour);
+  res.render('tours',{tour:tours});
+})
+
 app.get('/tours/:id', (req, res) => { //update
   const p = [tours.find(p => p.id === parseInt(req.params.id))] //lấy từ đường dẫn, req.body thì lấy từ value client truyền xuống
   if(!p) return res.status(404).json({ error: 'No such tour exists' })
