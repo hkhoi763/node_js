@@ -1,6 +1,7 @@
 //goi module
 const express = require('express');
 const handlebars= require('express-handlebars');
+const path= require("path");
 
 const app = express(); //tao app
 const port = 80; //cong
@@ -37,8 +38,9 @@ app.engine('hbs',handlebars({
 app.set('view engine','hbs');//set view engine
 
 //dinh tuyen views, static folder,...
-app.set('views','./template');//set file /views->/template
-app.use(express.static('./template/resources')); //dinh tuyen static folder
+app.set('views','./src/resources/views');//set file /views->/template
+app.use(express.static(path.join(__dirname,'./src/public'))); //dinh tuyen static folder, path bat dau localhost=src/resources
+
 
 //ROUTE
 //trang home
