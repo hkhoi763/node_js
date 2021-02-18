@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/hkhoi763/node_js#readme",
   "lint-staged": {
-    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --semi false --write"
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --semi true --write"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",
