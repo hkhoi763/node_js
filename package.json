@@ -4,7 +4,6 @@
   "description": "hello world",
   "main": "index.js",
   "scripts": {
-    "beautiful": "lint-staged",
     "start": "nodemon -e js,json,scss,hbs,html --inspect src/index.js",
     "scss": "node-sass --watch src/resources/scss/ -o src/public/css/",
     "build": "babel ./src --out-dir ./build",
@@ -27,6 +26,11 @@
   "homepage": "https://github.com/hkhoi763/node_js#readme",
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --semi true --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",

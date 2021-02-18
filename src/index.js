@@ -30,6 +30,6 @@ app.use(express.static(path.join(__dirname, 'src/public'))) //dinh tuyen static 
 //ROUTE
 route(app)
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+        app.listen(port, () => {
+            console.log(`Example app listening at http://localhost:${port}`)
+        })
