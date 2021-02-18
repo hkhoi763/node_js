@@ -10,9 +10,9 @@ const tours = [
     { id: 1, name: 'Oregon Coast', price: 149.95 },
 ]
 
-       function route(app) {
+    function route(app) {
     //trang search
-            app.use('/search', searchRouter)
+    app.use('/search', searchRouter)
 
     app.post('/search', (req, res) => {
         console.log(req.body)
