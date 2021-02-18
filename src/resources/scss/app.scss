@@ -1,5 +1,11 @@
-@import "var";
+/** @format */
 
-.test{
+$red-color: red;
+.test {
     color: $red-color;
+}
+
+.navbar {
+    padding: 1em;
+    margin-bottom: 2em;
 }
